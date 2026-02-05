@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  background: #252432;
+  background: #000000;
 }
 
 #cake {
@@ -126,7 +126,318 @@ body {
   font-weight: 300;
   font-style: italic;
   text-align: center;
+  line-height: 1.6;
 }
+
 .text h1 {
-  font-size: 1.4em;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  font-style: normal;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  
+  /* Animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.text p {
+  color: #ffffff;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 300;
+  margin: 25px auto;
+  max-width: 800px;
+  padding: 25px 30px;
+  line-height: 1.8;
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.1) 0%, 
+    rgba(118, 75, 162, 0.05) 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Animation */
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: fadeInUpScale 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: 0.4s;
+}
+
+/* Staggered animations for multiple paragraphs */
+.text p:nth-child(1) { animation-delay: 0.4s; }
+.text p:nth-child(2) { animation-delay: 0.6s; }
+.text p:nth-child(3) { animation-delay: 0.8s; }
+.text p:nth-child(4) { animation-delay: 1s; }
+
+/* Hover effect */
+.text p:hover {
+  transform: translateY(-5px);
+  border-color: rgba(102, 126, 234, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(102, 126, 234, 0.2),
+    0 0 0 1px rgba(102, 126, 234, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced animated text effect */
+.text p {
+  position: relative;
+  overflow: hidden;
+}
+
+.text p::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.05), 
+    transparent);
+  animation: shimmer 3s infinite;
+}
+
+.text p::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #667eea, 
+    #764ba2, 
+    transparent);
+  border-radius: 3px;
+  animation: lineExpand 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+}
+
+/* Add subtle gradient text effect for first letter */
+.text p::first-letter {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+/* Keyframe animations */
+@keyframes fadeInUpScale {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes lineExpand {
+  0%, 100% {
+    width: 80px;
+    opacity: 0.5;
+  }
+  50% {
+    width: 120px;
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* Add glow effect on specific keywords */
+.text p span.highlight {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 500;
+  text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text p {
+    padding: 20px;
+    margin: 20px 15px;
+    border-radius: 15px;
+  }
+  
+  .text p::after {
+    width: 60px;
+  }
+  
+  @keyframes lineExpand {
+    0%, 100% {
+      width: 60px;
+    }
+    50% {
+      width: 90px;
+    }
+  }
+}
+
+/* Glow effect on hover */
+.text h1:hover {
+  text-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+  transition: text-shadow 0.3s ease;
+}
+
+/* Keyframe animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineExpand {
+  0%, 100% {
+    width: 60px;
+    opacity: 0.5;
+  }
+  50% {
+    width: 100px;
+    opacity: 1;
+  }
+}
+
+/* Additional styles for parent container */
+.container {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating background elements */
+.container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .text p {
+    font-size: 1.3rem;
+    margin-top: 20px;
+  }
+}
+
+
+.wishes p {
+  font-size: 1.5rem;
+  color: white;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+.wishes p:nth-child(1) {
+  animation-delay: 0.5s;
+  border-left: 4px solid #FF6B6B;
+}
+
+.wishes p:nth-child(2) {
+  animation-delay: 1s;
+  border-left: 4px solid #FFD700;
+}
+
+.wishes p:nth-child(3) {
+  animation-delay: 1.5s;
+  border-left: 4px solid #4ECDC4;
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .text .name {
+    font-size: 3rem;
+  }
+  
+  .wishes p {
+    font-size: 1.2rem;
+  }
 }
